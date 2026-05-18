@@ -10,6 +10,7 @@ const connectDB = require("./config/db");
 const sosRoutes = require("./routes/sosRoutes");
 const hospitalRoutes = require("./routes/hospitalRoutes");
 const Emergency = require("./models/Emergency");
+const trackingRoutes = require("./routes/trackingRoutes");
 
 const app = express();
 
@@ -30,6 +31,8 @@ app.use(express.json());
 app.use("/api/sos", sosRoutes);
 
 app.use("/api/hospitals", hospitalRoutes);
+
+app.use("/api/tracking", trackingRoutes);
 
 app.get("/", (req, res) => {
   res.send("RoadSoS Backend Running");
