@@ -37,6 +37,26 @@ const createSOS = async (req, res) => {
   }
 };
 
+const getAllEmergencies = async (req, res) => {
+  try {
+    const emergencies = await Emergency.find().sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      count: emergencies.length,
+      emergencies,
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+};
+
 module.exports = {
   createSOS,
+  getAllEmergencies,
 };
